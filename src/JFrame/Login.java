@@ -9,13 +9,14 @@ import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
-    public Usuario cliente;
-    public ArrayList<String> archivo;
+    public Usuario cliente;    // Objeto Usuario que contiene la información del cliente
+    public ArrayList<String> archivo;  // Lista que contiene las líneas del archivo de usuarios
     
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
         archivo = new ArrayList<>();
+        // Carga los datos de usuarios desde el archivo "usuarios.txt"
         try {
             Scanner lector = new Scanner(new FileReader("usuarios.txt"));
             while(lector.hasNextLine()){
@@ -179,14 +180,15 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrobuttonActionPerformed
 
     private void ingresarbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarbuttonMouseClicked
-         String username=usuario.getText();
+        // Captura de los datos de usuario y contraseña
+        String username=usuario.getText();
         String password=new String(pintfiel.getPassword());
         int contador=0; //Número de fila donde se encuentra el registro
         boolean usuarioNoVacio=false;
         boolean passwordNoVacio=false;
         boolean validacion=false;
         
-        
+        // Validación de campos de entrada
         if(usuario.getText().equals("Ingrese su nombre de usuario")||
                 usuario.getText().isEmpty()){
             lblValidacionUsuario.setText("* Campo obligatorio");
@@ -203,7 +205,7 @@ public class Login extends javax.swing.JFrame {
             passwordNoVacio=true;
                 
             }
-        
+        // Validación de credenciales
         if(passwordNoVacio&&usuarioNoVacio){
             for(String fila:archivo) {
                 String filaDeDatos[]=fila.split(";");
@@ -227,6 +229,7 @@ public class Login extends javax.swing.JFrame {
                 ArrayList<String> movimientos=new ArrayList<>();
                 ArrayList<String> monedas=new ArrayList<>();
                 
+                // Procesa los datos del usuario
                 for(int i=3;i<splitDatosUsuario.length;i+=4){
                    if(i< splitDatosUsuario.length){
                        cuentas.add(splitDatosUsuario[i]);
@@ -241,7 +244,7 @@ public class Login extends javax.swing.JFrame {
                       monedas.add(splitDatosUsuario[i+3]);
                    }
                 }
-                
+                 // Crea un nuevo objeto Usuario
                 cliente = new Usuario(contador,username, password, nombreCompleto,
                         cuentas,tipoCuentas, saldos,movimientos, monedas);
                 MenuPrincipal menuPrincipal=new MenuPrincipal(cliente);
@@ -261,6 +264,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_salirbutMouseClicked
 
     private void usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMousePressed
+        // Limpia el campo de usuario cuando se presiona
         if(usuario.getText().equals("Ingrese su nombre de usuario")){
             usuario.setForeground(Color.black);
             usuario.setText("");
@@ -268,10 +272,11 @@ public class Login extends javax.swing.JFrame {
         if(String.valueOf(pintfiel.getPassword()).isEmpty()){
             pintfiel.setForeground(Color.lightGray);
             pintfiel.setText("**********");        
-        }// TODO add your handling code here:
+        }
     }//GEN-LAST:event_usuarioMousePressed
 
     private void pintfielMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pintfielMousePressed
+        // Limpia el campo de contraseña cuando se presiona
         if(usuario.getText().isEmpty()){
             usuario.setForeground(Color.lightGray);
             usuario.setText("Ingrese su nombre de usuario");
@@ -284,17 +289,18 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pintfielMousePressed
 
     private void salirbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbutActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_salirbutActionPerformed
 
     private void RegistrobuttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrobuttonMousePressed
+        // Acción al presionar el botón de registro
         SIGNUP registro = new SIGNUP();
         registro.setVisible(true);
         dispose();
     }//GEN-LAST:event_RegistrobuttonMousePressed
 
     private void salirbutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirbutMousePressed
-        System.exit(0);// TODO add your handling code here:
+        // Cierra la aplicación
+        System.exit(0);
     }//GEN-LAST:event_salirbutMousePressed
 
     /**

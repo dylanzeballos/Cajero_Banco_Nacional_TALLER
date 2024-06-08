@@ -17,8 +17,17 @@ public class SIGNUP extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
-    
+    /**
+    * Anexa una cadena de texto al archivo "usuarios.txt".
+    * 
+    * Este método abre el archivo "usuarios.txt" en modo append (anexar),
+    * escribe una nueva línea con la cadena de texto proporcionada y luego cierra el archivo.
+    * 
+    * @param fila La cadena de texto que se desea anexar al archivo. Se espera que esta cadena
+    *             contenga los datos de un usuario en un formato específico.
+    * @return     Un valor booleano que indica si la operación fue exitosa. Devuelve `true`
+    *             si la cadena se anexa correctamente al archivo, y `false` si ocurre un error.
+    */
     public boolean anexar (String fila){
         boolean r= false;
         
@@ -279,17 +288,23 @@ public class SIGNUP extends javax.swing.JFrame {
     }//GEN-LAST:event_abonoCaretPositionChanged
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // Método para manejar el evento del botón Cancelar
+        // Cierra el formulario de registro
         Login login = new Login();
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+        // Verifica si todos los campos están llenos y son válidos
+
+        // Resetear etiquetas de error
         boolean validarAbono = false;
         boolean validarCedula = false;
         boolean validarNombre = false;
         boolean validarUsuarioContr = false;
- 
+        
+        // Validar que el campo de carnet de identidad no esté vacío
         if(cariden.getText().isEmpty()){
             lblCedula.setText("*Campo obligatorio");
         } else{
@@ -304,6 +319,7 @@ public class SIGNUP extends javax.swing.JFrame {
             }
         }
         
+        // Validar que el campo de abono inicial no esté vacío y sea un número positivo
         if (abono.getText().isEmpty()) {
             lblAbonoI.setText("*Campo obligatorio");
         } else {
@@ -319,7 +335,7 @@ public class SIGNUP extends javax.swing.JFrame {
                 lblAbonoI.setText("*Dato no válido");
             }
         }
-
+        // Validar que el campo de nombre no esté vacío
         if (nomb.getText().isEmpty()) {
             lblNombreA.setText("*Campo obligatorio");
         } else {
@@ -333,7 +349,9 @@ public class SIGNUP extends javax.swing.JFrame {
                 }
             }
         }
-
+        
+        // Validar que el campo de usuario no esté vacío
+        // Validar que el campo de pin no esté vacío
         if (user.getText().isEmpty() || pin.getText().isEmpty()) {
             lblMensaje.setText("*Campos obligatorios");
         } else {
@@ -346,20 +364,20 @@ public class SIGNUP extends javax.swing.JFrame {
             }
 
         }
-
+        //Asigna un numero de cuenta aleatorio despues de validar los campos anteriores 
         if (validarAbono && validarCedula && validarNombre && validarUsuarioContr) {
             String numCuenta = "";
             for(int i=0;i<10;i++){
                 numCuenta=numCuenta+ String.valueOf((int) Math.round(Math.random() * 8 + 1));
             }
-             
+            //Selecciona el tipo de cuenta de el combobox
             String tipoCuenta;
             if (caja.getSelectedIndex() == 0) {
                 tipoCuenta = "0";
             } else {
                 tipoCuenta = "1";
             }
-            
+            //Selecciona la moneda de el combobox
             String monedaSeleccionada;
             if(moneda.getSelectedIndex()== 0){
                 monedaSeleccionada = "0";
@@ -368,11 +386,11 @@ public class SIGNUP extends javax.swing.JFrame {
             } else {
                 monedaSeleccionada = "2";
             }
-            
+            // Crear la cadena con los datos del nuevo usuario 
             String fila = user.getText() + ";" + pin.getText() + ";"
                     + nomb.getText() + ";" + numCuenta+";" + tipoCuenta +";" 
                     + abono.getText()+ ";" + monedaSeleccionada;
-
+            //Despues de agregar el usuario al archivo regresa a la pantalla de login
             if (anexar(fila)) {
                 JOptionPane.showMessageDialog(null, "Se ha agregado un usuario\n"
                         + "Inicie sesión por favor",

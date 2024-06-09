@@ -98,14 +98,6 @@ public class NuevaCuenta extends javax.swing.JFrame {
         cancelarbut.setForeground(new java.awt.Color(255, 255, 255));
         cancelarbut.setText("Cancelar");
         cancelarbut.setBorder(null);
-        cancelarbut.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelarbutMouseClicked(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                cancelarbutMousePressed(evt);
-            }
-        });
         cancelarbut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarbutActionPerformed(evt);
@@ -116,11 +108,6 @@ public class NuevaCuenta extends javax.swing.JFrame {
         añadirbutton.setForeground(new java.awt.Color(255, 255, 255));
         añadirbutton.setText("Añadir");
         añadirbutton.setBorder(null);
-        añadirbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                añadirbuttonMouseClicked(evt);
-            }
-        });
         añadirbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 añadirbuttonActionPerformed(evt);

@@ -14,16 +14,22 @@ public class Retiro extends javax.swing.JFrame {
     Usuario cliente;
     DecimalFormat frmt = new DecimalFormat();
     int indiceComboBox;
-    
+    /**
+    * Constructor de la clase Retiro.
+    * @param cliente Objeto de la clase Usuario que representa al cliente actual.
+    * Inicializa los componentes de la interfaz gráfica y configura la ventana de la aplicación.
+    * Establece el cliente actual y llena el ComboBox con las cuentas del cliente.
+    * Oculta algunos elementos de la interfaz que se mostrarán más tarde según sea necesario.
+    */
     public Retiro(Usuario cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
-        
+        // Llena el ComboBox con las cuentas del cliente.
         for (int i = 0; i < cliente.getCantidadCuentas(); i++) {
             cmbCuentasUsuarioOrigen.addItem(cliente.getTipoCuentas(i) + ": #" + String.valueOf(cliente.getCuenta(i)));
         }
-
+        // Oculta algunos elementos de la interfaz que se mostrarán más tarde según sea necesario.
         txtSaldo.setVisible(false);
         txtSaldoOrigen.setVisible(false);
         txtValorRetiro.setVisible(false);
@@ -221,10 +227,17 @@ public class Retiro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuentasUsuarioOrigenActionPerformed
+    /**
+    * Método invocado cuando se selecciona una cuenta de origen en el ComboBox de cuentas.
+    * @param evt Evento de acción que desencadena la selección de una cuenta de origen.
+    * Muestra u oculta elementos de la interfaz según la selección del usuario.
+    * Obtiene el saldo disponible de la cuenta seleccionada y muestra su valor.
+    * Establece el símbolo de la moneda correspondiente.
+    */
+    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {
         int selectedIndex = cmbCuentasUsuarioOrigen.getSelectedIndex();
         if (selectedIndex > 0) {
+            // Mostrar elementos de la interfaz según la selección del usuario.
             txtSaldo.setVisible(true);
             txtSaldoOrigen.setVisible(true);
             txtValorRetiro.setVisible(true);
@@ -233,10 +246,10 @@ public class Retiro extends javax.swing.JFrame {
             txtSeleccioneCuenta.setVisible(true);
             txtError1.setVisible(false);
             txtError2.setVisible(false);
-
+            // Obtener el saldo disponible de la cuenta seleccionada y mostrar su valor.
             float saldoDisponible = cliente.getSaldo(selectedIndex - 1);
             txtSaldoOrigen.setText(String.valueOf(saldoDisponible));
-
+            // Establecer el símbolo de la moneda correspondiente.
             String moneda = String.valueOf(cliente.getMoneda(selectedIndex-1));
             if ("BOLIVIANOS".equals(moneda)) {
             txtSimboloDolar.setText("Bs");
@@ -248,15 +261,22 @@ public class Retiro extends javax.swing.JFrame {
             txtSimboloDolar.setText("");
             }
         } else {
+            // Ocultar elementos de la interfaz si no se selecciona ninguna cuenta.
             txtSaldo.setVisible(false);
             txtSaldoOrigen.setVisible(false);
             txtValorRetiro.setVisible(false);
             txtSimboloDolar.setVisible(false);
             txtFieldDineroRetiro.setVisible(false);
         }
-    }//GEN-LAST:event_cmbCuentasUsuarioOrigenActionPerformed
-
-    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidar1ActionPerformed
+    }
+    /**
+    * Método invocado cuando se presiona el botón de validar.
+    * @param evt Evento de acción que desencadena la validación de la cuenta de origen.
+    * Verifica si se ha seleccionado una cuenta de origen.
+    * Habilita o deshabilita elementos de la interfaz según el resultado de la validación.
+    * Limpia el campo de texto para ingresar el monto de transferencia.
+    */
+    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {
         if(cmbCuentasUsuarioOrigen.getSelectedIndex()==0){
             txtError1.setVisible(true);
         }else{
@@ -269,42 +289,59 @@ public class Retiro extends javax.swing.JFrame {
             //btnValidar2.setVisible(true);
             txtFieldDineroRetiro.setText("");
         }
-    }//GEN-LAST:event_btnValidar1ActionPerformed
-
-    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+    }
+    /**
+    * Método invocado cuando se hace clic en el texto "Volver".
+    * @param evt Evento de ratón que desencadena la acción de volver al menú principal.
+    * Crea una nueva instancia de la ventana del menú principal y la hace visible.
+    * Cierra la ventana actual.
+    */
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {
         MenuPrincipal pantMenu=new MenuPrincipal(this.cliente);
         pantMenu.setVisible(true);
-        dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_txtVolverMouseClicked
+        dispose();
+    }
 
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnVolverMouseClicked
-
-    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMousePressed
+    /**
+    * Método invocado cuando se presiona el botón de confirmar retiro.
+    * @param evt Evento de ratón que desencadena la acción de confirmar el retiro.
+    * Intenta realizar las siguientes acciones:
+    * - Obtiene el monto a retirar del campo de texto.
+    * - Valida que el monto de retiro sea mayor o igual a cero.
+    * - Obtiene el índice de la cuenta seleccionada en el ComboBox.
+    * - Ajusta el índice de la cuenta (restando 1 para ignorar el primer elemento del ComboBox, que puede ser un marcador de posición).
+    * - Actualiza el saldo de la cuenta del usuario restando el monto del retiro.
+    * - Guarda el movimiento de retiro en el historial de transacciones de la cuenta.
+    * - Actualiza la información del usuario en el archivo de datos.
+    * - Muestra un recibo con los detalles del retiro.
+    * Si se produce una excepción NumberFormatException, muestra un mensaje de error indicando que se debe ingresar un valor válido.
+    */
+    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {
         try {
-            // Get the withdrawal value from the text field
+            // Obtiene el valor del retiro desde el text field
             float valorRetiro = Float.parseFloat(txtFieldDineroRetiro.getText());
 
-            // Validate the withdrawal value
+            // Valida el valor del retiro
             if (valorRetiro <= 0) {
                 txtError2.setText("El valor debe ser mayor a 0");
                 txtError2.setVisible(true);
                 return;
             }
 
-            // Get the selected account index
+            // Obtiene el indice de la cuenta seleccionada
             int cuentaSeleccionada = cmbCuentasUsuarioOrigen.getSelectedIndex();
-            if (cuentaSeleccionada <= 0) { // Assuming the first item is a placeholder
+            if (cuentaSeleccionada <= 0) { // Suponiendo que el primer elemento es un marcador de posición
                 txtError2.setText("Seleccione una cuenta válida");
                 txtError2.setVisible(true);
                 return;
             }
 
-            // Adjust index for zero-based array access
+            // Ajustar el índice para un acceso a la matriz basado en cero
             int ajustaIndex = cuentaSeleccionada - 1;
 
-            // Check if the account has sufficient balance
+            // Comprueba si la cuenta tiene saldo suficiente
             float saldoDisponible = cliente.getSaldo(ajustaIndex);
             if (valorRetiro > saldoDisponible) {
                 txtError2.setText("Saldo insuficiente");
@@ -312,20 +349,20 @@ public class Retiro extends javax.swing.JFrame {
                 return;
             }
 
-            // Update the user's balance
+            // Actualiza el saldo del usuario
             cliente.setSaldos(saldoDisponible - valorRetiro, ajustaIndex);
 
-            // Log the transaction
+            //Registra la operacion
             String movimiento = LocalDate.now() + " " + LocalTime.now() + "\nRetiro de efectivo\n" + "- $" + valorRetiro + "\n\n" + cliente.getMovimientos(ajustaIndex);
             cliente.addMovimiento(movimiento, ajustaIndex);
 
-            // Update the user's data in the file
+            //  Actualiza los datos del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();
             archivo.get(cliente.getFila());
             String nuevaFila = cliente.escribirFilaNueva();
             cliente.anexar(cliente.sobrescribirArchivo(archivo, cliente.getFila(), nuevaFila), "usuarios.txt");
 
-            // Show the receipt
+            // Muestra el recibo
             Recibo recibo = new Recibo(cliente, -valorRetiro, cliente.getCuenta(ajustaIndex));
             recibo.setVisible(true);
             this.dispose();
@@ -333,7 +370,7 @@ public class Retiro extends javax.swing.JFrame {
             txtError2.setText("Ingrese un valor válido");
             txtError2.setVisible(true);
         }
-    }//GEN-LAST:event_btnConfirmarMousePressed
+    }
 
     /**
      * @param args the command line arguments
@@ -346,7 +383,7 @@ public class Retiro extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

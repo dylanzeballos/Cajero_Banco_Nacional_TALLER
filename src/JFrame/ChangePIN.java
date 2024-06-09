@@ -130,38 +130,47 @@ public class ChangePIN extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {
         MenuPrincipal pantallaVolver = new MenuPrincipal(this.cliente);
         pantallaVolver.setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-    String nuevaContraseña = textfielcontrasenianueva.getText();
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {
+        // Obtiene la nueva contraseña y la confirmación de la contraseña ingresada por el usuario.
+        String nuevaContraseña = textfielcontrasenianueva.getText();
         String confirmarContraseña = textfielconfirmacontra.getText();
         boolean validarContr = false;    
-
+        
+        // Realiza varias validaciones:
         if (nuevaContraseña.isEmpty() || confirmarContraseña.isEmpty()) {
+            // Verifica si alguno de los campos está vacío y muestra un mensaje de error si es así.
             lblvalnueva.setText("*Campos obligatorios");
             lblvalconfirmada.setText("");
         } else if (nuevaContraseña.length() < 8 || confirmarContraseña.length() < 8) {
+            // Verifica si ambas contraseñas tienen al menos 8 caracteres y muestra un mensaje de error si no es así.
             lblvalnueva.setText("*Digite al menos 8 caracteres");
             lblvalconfirmada.setText("");
         } else if (!nuevaContraseña.equals(confirmarContraseña)) {
+            // Verifica si las contraseñas coinciden y muestra un mensaje de error si no coinciden.
             lblvalconfirmada.setText("*Las contraseñas no coinciden");
             lblvalnueva.setText("");
         } else {
+            // Si todas las validaciones son exitosas, establece validarContr a true.
             validarContr = true;
             lblvalnueva.setText("");
             lblvalconfirmada.setText("");
         }
 
         if (validarContr) {
+            // Llama al método cambiarContrasenia del objeto cliente para cambiar la contraseña.
             cliente.cambiarContrasenia(nuevaContraseña);
+            // Muestra un mensaje de confirmación.
             JOptionPane.showMessageDialog(this, "Contraseña actualizada correctamente.Vuelva a iniciar sesion");
+            // Cierra la aplicación.para volver a iniciar sesion con la nueva contraseña
             System.exit(0);
         }   
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    }
 
     /**
      * @param args the command line arguments

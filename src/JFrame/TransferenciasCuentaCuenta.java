@@ -6,18 +6,28 @@ package JFrame;
 
 import java.text.DecimalFormat;
 
+/**
+ * Clase TransferenciasCuentaCuenta.
+ * Permite realizar transferencias de dinero entre las cuentas del usuario.
+ */
 public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
 
     Usuario cliente;
     DecimalFormat frmt = new DecimalFormat();
     int indiceComboBox;
-    
+    /**
+     * Constructor de la clase TransferenciasCuentaCuenta.
+     * Inicializa los componentes de la GUI y establece la localización de la ventana en el centro de la pantalla.
+     * También configura las cuentas del cliente en los ComboBoxes.
+     *
+     * @param cliente El objeto Usuario que representa al cliente que está realizando una transferencia.
+     */
     public TransferenciasCuentaCuenta(Usuario cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         frmt.setMaximumFractionDigits(2);
         this.cliente = cliente;
-        
+         // Agrega las cuentas del cliente al ComboBox de cuentas de origen
         switch (cliente.getCantidadCuentas()) {
             case 1:
                 cmbCuentasUsuarioOrigen.addItem(cliente.getTipoCuentas(0) + ": #" + String.valueOf(cliente.getCuenta(0)));
@@ -38,7 +48,7 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
                 cmbCuentasUsuarioOrigen.addItem(cliente.getTipoCuentas(3) + ": #" + String.valueOf(cliente.getCuenta(3)));
                 break;
         }
-        
+        // Oculta varios componentes de la GUI al inicio
         txtSaldo.setVisible(false);
         txtSaldoOrigen.setVisible(false);
         txtValorTransferencia.setVisible(false);
@@ -281,21 +291,30 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverMouseClicked
-
-    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {
+    }
+    /**
+     * Maneja el evento de clic en el texto para volver al menú principal.
+     * @param evt El evento de clic del ratón.
+     */
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {
        MenuPrincipal pantMenu=new MenuPrincipal(this.cliente);
        pantMenu.setVisible(true);
-       dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_txtVolverMouseClicked
-
-    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuentasUsuarioOrigenActionPerformed
+       dispose();
+    }
+    /**
+     * Maneja el evento de selección de una cuenta de origen del ComboBox.
+     * @param evt El evento de acción.
+     */
+    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {
         int selectedIndex = cmbCuentasUsuarioOrigen.getSelectedIndex();
         txtSaldo.setVisible(true);
         txtSaldoOrigen.setVisible(true);
         txtSimboloDolar.setVisible(true);
+        /**
+        * Actualiza el saldo y la moneda de la cuenta seleccionada.
+        * @param indice El índice de la cuenta seleccionada.
+        */
         switch (selectedIndex) {
             case 0:
                 txtSaldoOrigen.setText("0.00");
@@ -379,9 +398,12 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
                 }
                 break;
         }
-    }//GEN-LAST:event_cmbCuentasUsuarioOrigenActionPerformed
-
-    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidar1ActionPerformed
+    }
+    /**
+     * Valida la selección de la cuenta de origen.
+     * @param evt El evento de acción.
+     */
+    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {
         if(cmbCuentasUsuarioOrigen.getSelectedIndex()==0){
             txtError1.setVisible(true);
         }else{
@@ -394,9 +416,12 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
             btnValidar2.setVisible(true);
             txtFieldDineroTransferencia.setText("");
         }
-    }//GEN-LAST:event_btnValidar1ActionPerformed
-
-    private void btnValidar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidar2ActionPerformed
+    }
+    /**
+     * Valida el monto ingresado para la transferencia.
+     * @param evt El evento de acción.
+     */
+    private void btnValidar2ActionPerformed(java.awt.event.ActionEvent evt) {
         try{
             if(Float.parseFloat(txtFieldDineroTransferencia.getText())<=cliente.getSaldo(indiceComboBox)){
                 txtFieldDineroTransferencia.setEnabled(false);
@@ -412,9 +437,12 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
         }catch (NumberFormatException e){
             txtError2.setVisible(true);
         }
-    }//GEN-LAST:event_btnValidar2ActionPerformed
-
-    private void btnValidar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidar3ActionPerformed
+    }
+    /**
+     * Valida la selección de la cuenta de destino.
+     * @param evt El evento de acción.
+     */
+    private void btnValidar3ActionPerformed(java.awt.event.ActionEvent evt) {
          if(cmbCuentasUsuarioDestino.getSelectedIndex()==0){
             txtError3.setText("*Campo Requerido");
             txtError3.setVisible(true);
@@ -424,9 +452,12 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
             btnValidar3.setEnabled(false);
             btnConfirmar.setVisible(true);
         }
-    }//GEN-LAST:event_btnValidar3ActionPerformed
-
-    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMousePressed
+    }
+    /**
+     * Confirma la transferencia y navega a la pantalla de confirmación.
+     * @param evt El evento de clic del ratón.
+     */
+    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {
         switch (cmbCuentasUsuarioOrigen.getSelectedIndex()) {
             case 1:
                 switch (cmbCuentasUsuarioDestino.getSelectedIndex()) {
@@ -517,7 +548,7 @@ public class TransferenciasCuentaCuenta extends javax.swing.JFrame {
                 }
                 break;
         }
-    }//GEN-LAST:event_btnConfirmarMousePressed
+    }
 
     /**
      * @param args the command line arguments

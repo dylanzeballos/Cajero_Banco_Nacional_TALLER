@@ -9,12 +9,17 @@ import javax.swing.JOptionPane;
 
 public class NuevaCuenta extends javax.swing.JFrame {
 
-    private Usuario cliente;
-    private int tipo;
-    private String numCuenta="";
-    private float saldoInicial;
-    private int moneda;
-    
+    private Usuario cliente;// Almacena el objeto Usuario, que contiene la información del cliente
+    private int tipo;// Almacena el tipo de cuenta (e.g., cuenta corriente, cuenta de ahorro)
+    private String numCuenta="";// Almacena el número de cuenta generado
+    private float saldoInicial; // Almacena el saldo inicial de la nueva cuenta
+    private int moneda;// Almacena el tipo de moneda (bolivianos, dólares, euros)
+    /**
+     * Constructor de la clase NuevaCuenta.
+     * Inicializa los componentes de la GUI y establece la localización de la ventana en el centro de la pantalla.
+     *
+     * @param cliente El objeto Usuario que representa al cliente que está creando una nueva cuenta.
+     */
     public NuevaCuenta(Usuario cliente) {
         initComponents();
         this.cliente = cliente;
@@ -204,27 +209,28 @@ public class NuevaCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void añadirbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_añadirbuttonMouseClicked
-    
-    }//GEN-LAST:event_añadirbuttonMouseClicked
-
-    private void cancelarbutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarbutMouseClicked
-
-    }//GEN-LAST:event_cancelarbutMouseClicked
-
-    private void cancelarbutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarbutMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cancelarbutMousePressed
-
-    private void cancelarbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarbutActionPerformed
+    /**
+    * Maneja la acción del botón de cancelar.
+    * Abre la ventana principal del menú y cierra la ventana actual.
+    *
+    * @param evt Evento de acción que desencadena la apertura de la ventana principal del menú.
+    */
+    private void cancelarbutActionPerformed(java.awt.event.ActionEvent evt) {
         MenuPrincipal menuprincipal = new MenuPrincipal(cliente);
-        menuprincipal.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_cancelarbutActionPerformed
-
-    private void añadirbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirbuttonActionPerformed
+        menuprincipal.setVisible(true); // Muestra la ventana del menú principal
+        dispose();// Cierra la ventana actual
+    }
+    
+    /**
+    * Maneja la acción del botón de añadir.
+    * Valida y procesa la adición de una nueva cuenta para el usuario.
+    *
+    * @param evt Evento de acción que desencadena la validación y adición de una nueva cuenta.
+    */
+    private void añadirbuttonActionPerformed(java.awt.event.ActionEvent evt) {
         boolean validMonto=false;
         try {
+            // Intenta parsear el texto del campo de abono a un float
             float monto = Float.parseFloat(textfieldabono.getText());
             if (monto < 0) {
                 lblValidMonto.setText("*Introduzca una cantidad positiva");
@@ -239,13 +245,14 @@ public class NuevaCuenta extends javax.swing.JFrame {
         }
         
         if(validMonto){
+            // Determina el tipo de cuenta seleccionado
             if(tipocaja.getSelectedIndex() == 0){
                 this.tipo = 0;
             }else{
                this.tipo = 1;
             }
             
-            
+            // Determina la moneda seleccionada
             if(tipomoneda.getSelectedIndex()==0){
                 this.moneda = 0;
             }else if (tipomoneda.getSelectedIndex()== 1){
@@ -254,29 +261,31 @@ public class NuevaCuenta extends javax.swing.JFrame {
                 this.moneda =2;
             }
             
-            
+             // Genera un número de cuenta aleatorio de 10 dígitos
             for (int i = 0; i < 10; i++) {
                 numCuenta = numCuenta + String.valueOf((int) Math.round(Math.random() * 8 + 1));
             }
+            // Agrega la nueva cuenta al usuario
             cliente.addCuenta(numCuenta);
             cliente.addTipo(String.valueOf(tipo));
             cliente.addSaldo(saldoInicial);
             cliente.addMoneda(String.valueOf(moneda));
+            // Actualiza la información del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();
             String datosUsuario = archivo.get(cliente.getFila());
             datosUsuario = datosUsuario + ";" + numCuenta + ";" + tipo + ";" + saldoInicial + ";" + moneda;
 
             archivo.set(cliente.getFila(), datosUsuario);
             cliente.anexar(archivo, "usuarios.txt");
-
+            // Muestra un mensaje de confirmación
             JOptionPane.showMessageDialog(null, "Se ha agregado una cuenta\n",
                     "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-
+            // Abre la ventana del menú principal y cierra la ventana actual
             MenuPrincipal menuPrincipal = new MenuPrincipal(cliente);
             menuPrincipal.setVisible(true);
             dispose();
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_añadirbuttonActionPerformed
+        }        
+    }
 
     /**
      * @param args the command line arguments
@@ -289,7 +298,7 @@ public class NuevaCuenta extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

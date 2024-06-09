@@ -16,16 +16,22 @@ public class Depositos extends javax.swing.JFrame {
     Usuario cliente;
     DecimalFormat frmt = new DecimalFormat();
     int indiceComboBox;
-    
+    /**
+    * Constructor de la clase Depositos.
+    * @param cliente Objeto de la clase Usuario que representa al cliente actual.
+    * Inicializa los componentes de la interfaz gráfica y configura la ventana de la aplicación.
+    * Establece el cliente actual y llena el ComboBox con las cuentas del cliente.
+    * Oculta algunos elementos de la interfaz que se mostrarán más tarde según sea necesario.
+    */
     public Depositos(Usuario cliente) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.cliente = cliente;
-        
+        // Llena el ComboBox con las cuentas del cliente.
         for (int i = 0; i < cliente.getCantidadCuentas(); i++) {
             cmbCuentasUsuarioOrigen.addItem(cliente.getTipoCuentas(i) + ": #" + String.valueOf(cliente.getCuenta(i)));
         }
-
+        // Oculta algunos elementos de la interfaz que se mostrarán más tarde según sea necesario.
         txtSaldo.setVisible(false);
         txtSaldoOrigen.setVisible(false);
         txtValorTransferencia.setVisible(false);
@@ -34,7 +40,6 @@ public class Depositos extends javax.swing.JFrame {
         txtSeleccioneCuenta.setVisible(false);
         txtError1.setVisible(false);
         txtError2.setVisible(false);
-        
     }
 
     /**
@@ -217,10 +222,17 @@ public class Depositos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCuentasUsuarioOrigenActionPerformed
+    /**
+    * Método invocado cuando se selecciona una cuenta de origen en el ComboBox de cuentas.
+    * @param evt Evento de acción que desencadena la selección de una cuenta de origen.
+    * Muestra u oculta elementos de la interfaz según la selección del usuario.
+    * Obtiene el saldo disponible de la cuenta seleccionada y muestra su valor.
+    * Establece el símbolo de la moneda correspondiente.
+    */
+    private void cmbCuentasUsuarioOrigenActionPerformed(java.awt.event.ActionEvent evt) {
         int selectedIndex = cmbCuentasUsuarioOrigen.getSelectedIndex();
         if (selectedIndex > 0) {
+            // Mostrar elementos de la interfaz según la selección del usuario.
             txtSaldo.setVisible(true);
             txtSaldoOrigen.setVisible(true);
             txtValorTransferencia.setVisible(true);
@@ -229,10 +241,10 @@ public class Depositos extends javax.swing.JFrame {
             txtSeleccioneCuenta.setVisible(true);
             txtError1.setVisible(false);
             txtError2.setVisible(false);
-
+            // Obtener el saldo disponible de la cuenta seleccionada y mostrar su valor.
             float saldoDisponible = cliente.getSaldo(selectedIndex - 1);
             txtSaldoOrigen.setText(String.valueOf(saldoDisponible));
-
+            // Establecer el símbolo de la moneda correspondiente.
             String moneda = String.valueOf(cliente.getMoneda(selectedIndex-1));
             if ("BOLIVIANOS".equals(moneda)) {
             txtSimboloDolar.setText("Bs");
@@ -244,51 +256,78 @@ public class Depositos extends javax.swing.JFrame {
             txtSimboloDolar.setText("");
             }
         } else {
+            // Ocultar elementos de la interfaz si no se selecciona ninguna cuenta.
             txtSaldo.setVisible(false);
             txtSaldoOrigen.setVisible(false);
             txtValorTransferencia.setVisible(false);
             txtSimboloDolar.setVisible(false);
             txtFieldDineroTransferencia.setVisible(false);
         }
-    }//GEN-LAST:event_cmbCuentasUsuarioOrigenActionPerformed
-
-    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidar1ActionPerformed
+    }
+    /**
+    * Método invocado cuando se presiona el botón de validar.
+    * @param evt Evento de acción que desencadena la validación de la cuenta de origen.
+    * Verifica si se ha seleccionado una cuenta de origen.
+    * Habilita o deshabilita elementos de la interfaz según el resultado de la validación.
+    * Limpia el campo de texto para ingresar el monto de transferencia.
+    */
+    private void btnValidar1ActionPerformed(java.awt.event.ActionEvent evt) {
         if(cmbCuentasUsuarioOrigen.getSelectedIndex()==0){
+            // Mostrar un mensaje de error si no se selecciona una cuenta de origen.
             txtError1.setVisible(true);
         }else{
+            // Ocultar el mensaje de error y deshabilitar elementos de la interfaz.
             txtError1.setVisible(false);
             cmbCuentasUsuarioOrigen.setEnabled(false);
             btnValidar1.setEnabled(false);
+            // Mostrar elementos de la interfaz para ingresar el monto de transferencia y limpiar el campo de texto.
             txtValorTransferencia.setVisible(true);
             txtSimboloDolar.setVisible(true);
             txtFieldDineroTransferencia.setVisible(true);
             txtFieldDineroTransferencia.setText("");
         }
-    }//GEN-LAST:event_btnValidar1ActionPerformed
-
-    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVolverMouseClicked
+    }
+    /**
+    * Método invocado cuando se hace clic en el texto "Volver".
+    * @param evt Evento de ratón que desencadena la acción de volver al menú principal.
+    * Crea una nueva instancia de la ventana del menú principal y la hace visible.
+    * Cierra la ventana actual.
+    */
+    private void txtVolverMouseClicked(java.awt.event.MouseEvent evt) {
         MenuPrincipal pantMenu=new MenuPrincipal(this.cliente);
         pantMenu.setVisible(true);
-        dispose();// TODO add your handling code here:
-    }//GEN-LAST:event_txtVolverMouseClicked
+        dispose();
+    }
 
-    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverMouseClicked
-
-    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfirmarMousePressed
+    private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {
+    }
+    /**
+    * Método invocado cuando se presiona el botón de confirmar depósito.
+    * @param evt Evento de ratón que desencadena la acción de confirmar el depósito.
+    * Intenta realizar las siguientes acciones:
+    * - Obtiene el monto de depósito del campo de texto.
+    * - Valida que el monto de depósito sea mayor a 0.
+    * - Obtiene el índice de la cuenta seleccionada en el ComboBox.
+    * - Ajusta el índice de la cuenta (restando 1 para ignorar el primer elemento del ComboBox, que puede ser un marcador de posición).
+    * - Actualiza el saldo de la cuenta del usuario sumando el monto del depósito.
+    * - Guarda el movimiento de depósito en el historial de transacciones de la cuenta.
+    * - Actualiza la información del usuario en el archivo de datos.
+    * - Muestra un recibo con los detalles del depósito.
+    * Si se produce una excepción NumberFormatException, muestra un mensaje de error indicando que se debe ingresar un valor válido.
+    */
+    private void btnConfirmarMousePressed(java.awt.event.MouseEvent evt) {
         try {
-            // Get the deposit value from the text field
+            // Obtiene el monto de deposito del text field
             float valorDeposito = Float.parseFloat(txtFieldDineroTransferencia.getText());
 
-            // Validate the deposit value
+            //Valida el valor del deposito
             if (valorDeposito <= 0) {
                 txtError2.setText("El valor debe ser mayor a 0");
                 txtError2.setVisible(true);
                 return;
             }
 
-            // Get the selected account index
+            // Obtiene el indice de la cuenta seleccionada
             int cuentaSeleccionada = cmbCuentasUsuarioOrigen.getSelectedIndex();
             if (cuentaSeleccionada <= 0) { // Assuming the first item is a placeholder
                 txtError2.setText("Seleccione una cuenta válida");
@@ -296,23 +335,23 @@ public class Depositos extends javax.swing.JFrame {
                 return;
             }
 
-            // Adjust index for zero-based array access
+            // Ajusta el indice de la cuenta en cero 
             int ajustaIndex = cuentaSeleccionada - 1;
 
-            // Update the user's balance
+            // Actualiza el balance del usuario 
             cliente.setSaldos(cliente.getSaldo(ajustaIndex) + valorDeposito, ajustaIndex);
 
-            // Log the transaction
+            // Guarda la transaccion 
             String movimiento = LocalDate.now() + "\nDeposito de efectivo\n" + "- $" + valorDeposito + "\n\n" + cliente.getMovimientos(ajustaIndex);
             cliente.addMovimiento(movimiento, ajustaIndex);
 
-            // Update the user's data in the file
+            // Actualiza la infromacion del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();
             archivo.get(cliente.getFila());
             String nuevaFila = cliente.escribirFilaNueva();
             cliente.anexar(cliente.sobrescribirArchivo(archivo, cliente.getFila(), nuevaFila), "usuarios.txt");
 
-            // Show the receipt
+            // Muestra el recibo
             Recibo recibo = new Recibo(cliente, valorDeposito, cliente.getCuenta(ajustaIndex));
             recibo.setVisible(true);
             this.dispose();
@@ -320,7 +359,7 @@ public class Depositos extends javax.swing.JFrame {
             txtError2.setText("Ingrese un valor válido");
             txtError2.setVisible(true);
         }
-    }//GEN-LAST:event_btnConfirmarMousePressed
+    }
 
     /**
      * @param args the command line arguments

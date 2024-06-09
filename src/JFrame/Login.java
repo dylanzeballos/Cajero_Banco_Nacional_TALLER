@@ -179,7 +179,7 @@ public class Login extends javax.swing.JFrame {
     private void RegistrobuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrobuttonActionPerformed
     }//GEN-LAST:event_RegistrobuttonActionPerformed
 
-    private void ingresarbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ingresarbuttonMouseClicked
+    private void ingresarbuttonMouseClicked(java.awt.event.MouseEvent evt) {
         // Captura de los datos de usuario y contraseña
         String username=usuario.getText();
         String password=new String(pintfiel.getPassword());
@@ -257,13 +257,13 @@ public class Login extends javax.swing.JFrame {
                         "Error", JOptionPane.WARNING_MESSAGE);
             }
         }      
-    }//GEN-LAST:event_ingresarbuttonMouseClicked
+    }
 
     private void salirbutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirbutMouseClicked
      
     }//GEN-LAST:event_salirbutMouseClicked
 
-    private void usuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usuarioMousePressed
+    private void usuarioMousePressed(java.awt.event.MouseEvent evt) {
         // Limpia el campo de usuario cuando se presiona
         if(usuario.getText().equals("Ingrese su nombre de usuario")){
             usuario.setForeground(Color.black);
@@ -273,9 +273,9 @@ public class Login extends javax.swing.JFrame {
             pintfiel.setForeground(Color.lightGray);
             pintfiel.setText("**********");        
         }
-    }//GEN-LAST:event_usuarioMousePressed
+    }
 
-    private void pintfielMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pintfielMousePressed
+    private void pintfielMousePressed(java.awt.event.MouseEvent evt) {
         // Limpia el campo de contraseña cuando se presiona
         if(usuario.getText().isEmpty()){
             usuario.setForeground(Color.lightGray);
@@ -286,22 +286,22 @@ public class Login extends javax.swing.JFrame {
             pintfiel.setForeground(Color.black);
             pintfiel.setText("");
         }
-    }//GEN-LAST:event_pintfielMousePressed
+    }
 
     private void salirbutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirbutActionPerformed
     }//GEN-LAST:event_salirbutActionPerformed
 
-    private void RegistrobuttonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistrobuttonMousePressed
+    private void RegistrobuttonMousePressed(java.awt.event.MouseEvent evt) {
         // Acción al presionar el botón de registro
         SIGNUP registro = new SIGNUP();
         registro.setVisible(true);
         dispose();
-    }//GEN-LAST:event_RegistrobuttonMousePressed
+    }
 
-    private void salirbutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirbutMousePressed
+    private void salirbutMousePressed(java.awt.event.MouseEvent evt) {
         // Cierra la aplicación
         System.exit(0);
-    }//GEN-LAST:event_salirbutMousePressed
+    }
 
     /**
      * @param args the command line arguments

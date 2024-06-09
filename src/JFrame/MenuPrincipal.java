@@ -6,70 +6,77 @@ import java.time.LocalTime;
         
 public class MenuPrincipal extends javax.swing.JFrame {
     
-    public Usuario cliente;
+    public Usuario cliente;// Objeto de la clase Usuario para representar al cliente
 
     /**
-     * Creates new form MenuPrincipal
+     * Constructor de la clase MenuPrincipal.
+     * 
+     * @param cliente El objeto Usuario que representa al cliente que ha iniciado sesión.
      */
     public MenuPrincipal(Usuario cliente) {
         initComponents();
-        DecimalFormat frmt = new DecimalFormat();
-        frmt.setMaximumFractionDigits(2);
+        DecimalFormat frmt = new DecimalFormat(); // Objeto DecimalFormat para formatear números
+        frmt.setMaximumFractionDigits(2);// Establece el máximo número de dígitos fraccionarios en 2
         this.cliente=cliente;
         this.setLocationRelativeTo(null);
-        
+        // Configuración inicial de los elementos de la interfaz gráfica
         lblBienvenido.setText("Bienvenido,");
         txtNombreCliente.setText(cliente.getNombreCompleto());
-        
+        // Obtención de la fecha y hora actual para mostrar como último ingreso
         LocalDate fechaActualIngreso = LocalDate.now();
         LocalTime horaActual = LocalTime.now();
         String ingresoFechaHora = "Ultimo ingreso: "+String.valueOf(fechaActualIngreso)+
                                   " a las "+String.valueOf(horaActual).substring(0, 8);
         txtHoraFecha.setText(String.valueOf(ingresoFechaHora));
+        // Configuración de las cuentas del cliente en la interfaz gráfica según su cantidad
         switch(cliente.getCantidadCuentas()){
             case 1:
+                // Oculta los campos de las otras cuentas
                 txtTipoCuenta4.setVisible(false);txtmoneda4.setVisible(false); txtSaldoCuenta4.setVisible(false); txtNumeroCuenta4.setVisible(false); imgFlechaAccesoCuenta4.setVisible(false);
                 txtTipoCuenta3.setVisible(false);txtmoneda3.setVisible(false); txtSaldoCuenta3.setVisible(false); txtNumeroCuenta3.setVisible(false); imgFlechaAccesoCuenta3.setVisible(false);
                 txtTipoCuenta2.setVisible(false); txtmoneda2.setVisible(false); txtSaldoCuenta2.setVisible(false); txtNumeroCuenta2.setVisible(false); imgFlechaAccesoCuenta2.setVisible(false);
-                
+                // Configuración de la primera cuenta
                 txtNumeroCuenta1.setText("N° "+String.valueOf(cliente.getCuenta(0)));
                 txtSaldoCuenta1.setText(String.valueOf(frmt.format(cliente.getSaldo(0))));
                 txtTipoCuenta1.setText(cliente.getTipoCuentas(0));
                 txtmoneda1.setText(cliente.getMoneda(0));
                 break;
             case 2:
+                // Oculta los campos de las otras cuentas
                 txtTipoCuenta4.setVisible(false); txtmoneda4.setVisible(false);txtSaldoCuenta4.setVisible(false); txtNumeroCuenta4.setVisible(false); imgFlechaAccesoCuenta4.setVisible(false);
                 txtTipoCuenta3.setVisible(false); txtmoneda3.setVisible(false);txtSaldoCuenta3.setVisible(false); txtNumeroCuenta3.setVisible(false); imgFlechaAccesoCuenta3.setVisible(false);
-                
+                // Configuración de la primera cuenta
                 txtNumeroCuenta1.setText("N° "+String.valueOf(cliente.getCuenta(0)));
                 txtSaldoCuenta1.setText(String.valueOf(frmt.format(cliente.getSaldo(0))));
                 txtTipoCuenta1.setText(cliente.getTipoCuentas(0));
                 txtmoneda1.setText(cliente.getMoneda(0));
-                
+                // Configuración de la segunda cuenta
                 txtNumeroCuenta2.setText("N° "+String.valueOf(cliente.getCuenta(1)));
                 txtSaldoCuenta2.setText(String.valueOf(frmt.format(cliente.getSaldo(1))));
                 txtTipoCuenta2.setText(cliente.getTipoCuentas(1));
                 txtmoneda2.setText(cliente.getMoneda(1));
                 break;
             case 3:
+                // Oculta los campos de las otras cuentas
                 txtTipoCuenta4.setVisible(false);txtmoneda4.setVisible(false); txtSaldoCuenta4.setVisible(false); txtNumeroCuenta4.setVisible(false); imgFlechaAccesoCuenta4.setVisible(false);
-                
+                // Configuración de la primera cuenta
                 txtNumeroCuenta1.setText("N° "+String.valueOf(cliente.getCuenta(0)));
                 txtSaldoCuenta1.setText(String.valueOf(frmt.format(cliente.getSaldo(0))));
                 txtTipoCuenta1.setText(cliente.getTipoCuentas(0));
                 txtmoneda1.setText(cliente.getMoneda(0));
-                
+                // Configuración de la segunda cuenta
                 txtNumeroCuenta2.setText("N° "+String.valueOf(cliente.getCuenta(1)));
                 txtSaldoCuenta2.setText(String.valueOf(frmt.format(cliente.getSaldo(1))));
                 txtTipoCuenta2.setText(cliente.getTipoCuentas(1));
                 txtmoneda2.setText(cliente.getMoneda(1));
-                
+                // Configuración de la tercera cuenta
                 txtNumeroCuenta3.setText("N° "+String.valueOf(cliente.getCuenta(2)));
                 txtSaldoCuenta3.setText(String.valueOf(frmt.format(cliente.getSaldo(2))));
                 txtTipoCuenta3.setText(cliente.getTipoCuentas(2));
                 txtmoneda3.setText(cliente.getMoneda(2));
                 break;
             default:
+                // Configuración de las cuatro cuentas
                 txtNumeroCuenta1.setText("N° "+String.valueOf(cliente.getCuenta(0)));
                 txtSaldoCuenta1.setText(String.valueOf(frmt.format(cliente.getSaldo(0))));
                 txtTipoCuenta1.setText(cliente.getTipoCuentas(0));
@@ -92,6 +99,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 
                 btnNuevaCuenta.setVisible(false);
         }
+        // Cálculo y configuración del saldo total en bolivianos
+        //Obtiene el numeros de cuentas obtiene su saldo y moneda de cada uno
+        //Calcula el total de cuentas con el metodo convertirABolivianos de la clase usuario
         float saldoTotalBolivianos = 0.0f;
         for (int i = 0; i < cliente.getCantidadCuentas(); i++) {
             float saldo = cliente.getSaldo(i);

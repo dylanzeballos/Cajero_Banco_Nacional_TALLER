@@ -352,9 +352,10 @@ public class Retiro extends javax.swing.JFrame {
             // Actualiza el saldo del usuario
             cliente.setSaldos(saldoDisponible - valorRetiro, ajustaIndex);
 
-            //Registra la operacion
-            String movimiento = LocalDate.now() + " " + LocalTime.now() + "\nRetiro de efectivo\n" + "- $" + valorRetiro + "\n\n" + cliente.getMovimientos(ajustaIndex);
-            cliente.addMovimiento(movimiento, ajustaIndex);
+            // Registrar la transacción
+           String tipoOperacion = "Retiro de efectivo";
+           String beneficiario = "Cuenta propia"; // Puedes ajustar esto según sea necesario
+           cliente.addMovimiento(tipoOperacion, beneficiario, valorRetiro, ajustaIndex);
 
             //  Actualiza los datos del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();

@@ -72,10 +72,10 @@ public class Movimientos extends javax.swing.JFrame {
         txtTituloInformacionCuenta.setText("Informacion de cuenta");
         jPanel2.add(txtTituloInformacionCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 290, 40));
 
-        txtSaldoDisponible.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        txtSaldoDisponible.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         txtSaldoDisponible.setForeground(new java.awt.Color(0, 51, 51));
         txtSaldoDisponible.setText("Saldo disponible");
-        jPanel2.add(txtSaldoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 240, 130, 30));
+        jPanel2.add(txtSaldoDisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 240, 170, 30));
 
         txtSaldoCuenta.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jPanel2.add(txtSaldoCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, 180, 30));
@@ -113,7 +113,8 @@ public class Movimientos extends javax.swing.JFrame {
 
         txtMovimientos.setBackground(new java.awt.Color(255, 255, 255));
         txtMovimientos.setColumns(20);
-        txtMovimientos.setForeground(new java.awt.Color(204, 51, 0));
+        txtMovimientos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtMovimientos.setForeground(new java.awt.Color(153, 0, 0));
         txtMovimientos.setRows(5);
         jScrollPane2.setViewportView(txtMovimientos);
 

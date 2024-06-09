@@ -174,12 +174,10 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
         if (this.tipo == 1) {
             usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)
                     - valor), (cuentaSeleccionada));
+            String tipoOperacion = "Pago de tarjeta";
+            String beneficiario = "Banco Nacional";
+            usuario.addMovimiento(tipoOperacion, beneficiario, valor, cuentaSeleccionada);
             
-            String movimiento = String.valueOf(fechaActual) + "\nPago de tarjeta" + 
-                    tarjeta + "\n- $" + valor +"\n\n"+ usuario.getMovimientos(cuentas);
-            
- 
-            this.usuario.addMovimiento(movimiento, cuentas);
             ArrayList<String> archivo=usuario.leerArchivo();
             archivo.get(usuario.getFila());
             String nuevaFila=usuario.escribirFilaNueva();
@@ -191,11 +189,9 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
             
         } else if (this.tipo == 2) {
             String monedaOrigen = usuario.getMoneda(cuentaSeleccionada);
-            usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)
-                    - valor), (cuentaSeleccionada));
-            String movimiento = String.valueOf(fechaActual) + "\nTransferencia a " + nombre
-                    + "\n- $" + valor + "\n\n" + usuario.getMovimientos(cuentas);
-            this.usuario.addMovimiento(movimiento, cuentas);
+            usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)- valor), (cuentaSeleccionada));
+            String tipoOperacion = "Transferencia a";
+            usuario.addMovimiento(tipoOperacion, nombre, valor, cuentaSeleccionada);
             if(this.transf.equalsIgnoreCase("Interbancaria")){
                 valor-=0.4;
             }
@@ -238,16 +234,13 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
             float montoConvertido = valor * tipoCambio;
 
             // Actualizar saldos
-            usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)
-                    - valor), (cuentaSeleccionada));
-            usuario.setSaldos((usuario.getSaldo(indiceCuentaDestino)
-                    + montoConvertido), (indiceCuentaDestino));
-            String movimiento = String.valueOf(fechaActual) + "\nTransferencia a " + nombre
-                    + "\n- $" + valor + "\n\n" + usuario.getMovimientos(cuentaSeleccionada);
-            this.usuario.addMovimiento(movimiento, cuentaSeleccionada);
-            String movimiento2 = String.valueOf(fechaActual) + "\nTransferencia de " + nombre
-                    + "\n+ $" + montoConvertido + "\n\n" + usuario.getMovimientos(indiceCuentaDestino);
-            this.usuario.addMovimiento(movimiento2, indiceCuentaDestino);
+            usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada) - valor), (cuentaSeleccionada));
+            usuario.setSaldos((usuario.getSaldo(indiceCuentaDestino)+ montoConvertido), (indiceCuentaDestino));
+            String tipoOperacion = "Transferencia a";
+            usuario.addMovimiento(tipoOperacion, nombre, valor, cuentaSeleccionada);
+
+            String tipoOperacionDestino = "Transferencia de";
+            usuario.addMovimiento(tipoOperacionDestino, nombre, montoConvertido, indiceCuentaDestino);
 
             ArrayList<String> archivo = usuario.leerArchivo();
             archivo.set(usuario.getFila(), usuario.escribirFilaNueva());
@@ -261,9 +254,8 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
             usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)
                     - valor), (cuentaSeleccionada));
             
-            String movimiento2 = String.valueOf(fechaActual) + "\nTransferencia a " + nombre
-                    + "\n- $" + frmt.format(valor-0.4) + "\n\n" + usuario.getMovimientos(cuentaSeleccionada);
-            this.usuario.addMovimiento(movimiento2, cuentaSeleccionada);
+            String tipoOperacion = "Transferencia a";
+            usuario.addMovimiento(tipoOperacion, nombre, valor - 0.4f, cuentaSeleccionada);
 
             ArrayList<String> archivo = usuario.leerArchivo();
             archivo.set(usuario.getFila(), usuario.escribirFilaNueva());
@@ -308,7 +300,7 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

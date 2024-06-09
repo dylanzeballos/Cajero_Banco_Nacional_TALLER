@@ -124,31 +124,36 @@ public class Usuario {
         this.saldos.add(saldo);
     }
     
-    public synchronized void addMovimiento(String movimiento, int indice){
+    public synchronized void addMovimiento(String tipoOperacion, String beneficiario, float monto, int indice){
         String cuenta = getCuenta(indice);
         String moneda = getMoneda(indice);
-        String movimientoConFecha = getFormattedDateTime() + "\n" + movimiento;
+        String movimiento = String.format("%s; %s; %s; %.2f %s",getFormattedDateTime(), tipoOperacion, beneficiario, monto, moneda);
 
         // Verifica si el movimiento ya está registrado en memoria
-        if (!movimientosPorCuenta.get(cuenta).contains(movimientoConFecha)) {
-            movimientosPorCuenta.get(cuenta).add(0, movimientoConFecha);
+        if (!movimientosPorCuenta.get(cuenta).contains(movimiento)) {
+            movimientosPorCuenta.get(cuenta).add(0, movimiento);
             if (movimientosPorCuenta.get(cuenta).size() > 15) {
                 movimientosPorCuenta.get(cuenta).remove(15);
             }
-            // Agrega el movimiento al archivo
-            try (PrintWriter out = new PrintWriter(new FileWriter(cuenta + moneda + "movimientos.txt", true))) {
-                out.println(movimientoConFecha);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            guardarMovimientoEnArchivo(movimiento, cuenta, moneda);
+        }
+    }
+    
+    private void guardarMovimientoEnArchivo(String movimiento, String cuenta, String moneda) {
+        String archivoMovimientos = cuenta + moneda + "movimientos.txt";
+        try (PrintWriter out = new PrintWriter(new FileWriter(archivoMovimientos, true))) {
+            out.println(movimiento);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     
     private String getFormattedDateTime() {
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);
     }
+
 
     private void cargarMovimientos() {
         for (String cuenta : cuentas) {

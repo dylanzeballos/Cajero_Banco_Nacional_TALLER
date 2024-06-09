@@ -341,9 +341,10 @@ public class Depositos extends javax.swing.JFrame {
             // Actualiza el balance del usuario 
             cliente.setSaldos(cliente.getSaldo(ajustaIndex) + valorDeposito, ajustaIndex);
 
-            // Guarda la transaccion 
-            String movimiento = LocalDate.now() + "\nDeposito de efectivo\n" + "- $" + valorDeposito + "\n\n" + cliente.getMovimientos(ajustaIndex);
-            cliente.addMovimiento(movimiento, ajustaIndex);
+            // Registrar la transacción
+           String tipoOperacion = "Depósito de efectivo";
+           String beneficiario = "Cuenta propia"; // Puedes ajustar esto según sea necesario
+           cliente.addMovimiento(tipoOperacion, beneficiario, valorDeposito, ajustaIndex);
 
             // Actualiza la infromacion del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();

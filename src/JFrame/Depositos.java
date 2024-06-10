@@ -148,7 +148,7 @@ public class Depositos extends javax.swing.JFrame {
         jPanel1.add(txtValorTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 400, -1, 40));
 
         txtFieldDineroTransferencia.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldDineroTransferencia.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
+        txtFieldDineroTransferencia.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtFieldDineroTransferencia.setForeground(new java.awt.Color(0, 51, 51));
         jPanel1.add(txtFieldDineroTransferencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 30));
 
@@ -353,7 +353,7 @@ public class Depositos extends javax.swing.JFrame {
             cliente.anexar(cliente.sobrescribirArchivo(archivo, cliente.getFila(), nuevaFila), "usuarios.txt");
 
             // Muestra el recibo
-            Recibo recibo = new Recibo(cliente, valorDeposito, cliente.getCuenta(ajustaIndex));
+            Recibo recibo = new Recibo(cliente, valorDeposito, cliente.getCuenta(ajustaIndex),"deposito");
             recibo.setVisible(true);
             this.dispose();
         } catch (NumberFormatException e) {

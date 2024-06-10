@@ -1,6 +1,4 @@
-23:04:37
-2024-06-04
-Transferencia a DYLAN AMIN ZEBALLOS PEREDO
-- $8.3
-
-
+2024-06-09 22:29:12; Transferencia a; ANAHI ZEBALLOS PEREDO; 22.28 BOLIVIANOS
+2024-06-10 01:08:33; Retiro de efectivo; Cuenta propia; 100.00 BOLIVIANOS
+2024-06-10 01:09:08; Depósito de efectivo; Cuenta propia; 100.00 BOLIVIANOS
+2024-06-10 01:14:52; Transferencia de; ANAHI ZEBALLOS PEREDO; 7.07 BOLIVIANOS

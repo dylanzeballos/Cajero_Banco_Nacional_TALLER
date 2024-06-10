@@ -152,7 +152,7 @@ public class Retiro extends javax.swing.JFrame {
         jPanel2.add(txtValorRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 400, -1, 40));
 
         txtFieldDineroRetiro.setBackground(new java.awt.Color(255, 255, 255));
-        txtFieldDineroRetiro.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFieldDineroRetiro.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         jPanel2.add(txtFieldDineroRetiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 450, 150, 30));
 
         txtError2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -364,7 +364,7 @@ public class Retiro extends javax.swing.JFrame {
             cliente.anexar(cliente.sobrescribirArchivo(archivo, cliente.getFila(), nuevaFila), "usuarios.txt");
 
             // Muestra el recibo
-            Recibo recibo = new Recibo(cliente, valorRetiro, cliente.getCuenta(ajustaIndex));
+            Recibo recibo = new Recibo(cliente, valorRetiro, cliente.getCuenta(ajustaIndex),"retiro");
             recibo.setVisible(true);
             this.dispose();
         } catch (NumberFormatException e) {

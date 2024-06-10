@@ -109,6 +109,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             saldoTotalBolivianos += cliente.convertirABolivianos(saldo, moneda);
         }
         txtsaldototal.setText(frmt.format(saldoTotalBolivianos)+ "      BS.");
+        
+        // Tipos de cambio
+        lblTipoCambioTitulo.setText("Tipos de cambio:");
+        lblTipoCambioUSD.setText("USD: " + frmt.format(Usuario.obtenerTipoDeCambio("DOLARES","BOLIVIANOS")) + " BS  "+frmt.format(Usuario.obtenerTipoDeCambio("DOLARES","EUROS"))+" EUR");
+        lblTipoCambioEUR.setText("EUR: " + frmt.format(Usuario.obtenerTipoDeCambio("EUROS","BOLIVIANOS")) + " BS  "+frmt.format(Usuario.obtenerTipoDeCambio("EUROS","DOLARES"))+" USD");
+        lblTipoCambioBs.setText("BS: "+frmt.format(Usuario.obtenerTipoDeCambio("BOLIVIANOS","DOLARES"))+" USD  "+frmt.format(Usuario.obtenerTipoDeCambio("BOLIVIANOS","EUROS"))+" EUR");
+        
     }
         
 
@@ -159,6 +166,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtMisCuentas = new javax.swing.JLabel();
         btnNuevaCuenta = new javax.swing.JPanel();
         txtSimboloNuevaCuenta = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         btnInfoCuenta1 = new javax.swing.JPanel();
         txtTipoCuenta1 = new javax.swing.JLabel();
         txtNumeroCuenta1 = new javax.swing.JLabel();
@@ -184,8 +192,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtSaldoCuenta4 = new javax.swing.JLabel();
         imgFlechaAccesoCuenta4 = new javax.swing.JLabel();
         jButSalir = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jLbackground = new javax.swing.JLabel();
+        lblTipoCambioTitulo = new javax.swing.JLabel();
+        lblTipoCambioUSD = new javax.swing.JLabel();
+        lblTipoCambioEUR = new javax.swing.JLabel();
+        lblTipoCambioBs = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -309,7 +319,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jlblretirtext1.setForeground(new java.awt.Color(255, 255, 255));
         jlblretirtext1.setText("Transferencia");
-        btntranferenciadirecta.add(jlblretirtext1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 80, 40));
+        btntranferenciadirecta.add(jlblretirtext1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 80, 20));
 
         jPaneloperaciones.add(btntranferenciadirecta, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 120, 120));
 
@@ -395,9 +405,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 txtSimboloNuevaCuentaMousePressed(evt);
             }
         });
-        btnNuevaCuenta.add(txtSimboloNuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, -1));
+        btnNuevaCuenta.add(txtSimboloNuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 30));
 
-        jPanel1.add(btnNuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, 40, 30));
+        jPanel1.add(btnNuevaCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, 50, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 353, 280, 10));
 
         btnInfoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
         btnInfoCuenta1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(222, 222, 222)));
@@ -409,15 +420,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnInfoCuenta1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTipoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipoCuenta1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtTipoCuenta1.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta1.add(txtTipoCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 15, 80, 20));
 
         txtNumeroCuenta1.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumeroCuenta1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtNumeroCuenta1.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta1.add(txtNumeroCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 15, 110, 20));
 
         txtmoneda1.setBackground(new java.awt.Color(255, 255, 255));
+        txtmoneda1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtmoneda1.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta1.add(txtmoneda1, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 15, 100, 20));
 
         txtSaldoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
+        txtSaldoCuenta1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnInfoCuenta1.add(txtSaldoCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 15, 70, 20));
 
         imgFlechaAccesoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
@@ -431,15 +449,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnInfoCuenta2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTipoCuenta2.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipoCuenta2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtTipoCuenta2.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta2.add(txtTipoCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 20));
 
         txtNumeroCuenta2.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumeroCuenta2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtNumeroCuenta2.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta2.add(txtNumeroCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
 
         txtmoneda2.setBackground(new java.awt.Color(255, 255, 255));
+        txtmoneda2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtmoneda2.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta2.add(txtmoneda2, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 20, 100, 20));
 
         txtSaldoCuenta2.setBackground(new java.awt.Color(255, 255, 255));
+        txtSaldoCuenta2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnInfoCuenta2.add(txtSaldoCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
 
         imgFlechaAccesoCuenta2.setBackground(new java.awt.Color(255, 255, 255));
@@ -460,15 +485,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnInfoCuenta3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTipoCuenta3.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipoCuenta3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtTipoCuenta3.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta3.add(txtTipoCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 20));
 
         txtNumeroCuenta3.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumeroCuenta3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtNumeroCuenta3.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta3.add(txtNumeroCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
 
         txtmoneda3.setBackground(new java.awt.Color(255, 255, 255));
+        txtmoneda3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtmoneda3.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta3.add(txtmoneda3, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 20, 100, 20));
 
         txtSaldoCuenta3.setBackground(new java.awt.Color(255, 255, 255));
+        txtSaldoCuenta3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnInfoCuenta3.add(txtSaldoCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
 
         imgFlechaAccesoCuenta3.setBackground(new java.awt.Color(255, 255, 255));
@@ -487,15 +519,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnInfoCuenta4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtTipoCuenta4.setBackground(new java.awt.Color(255, 255, 255));
+        txtTipoCuenta4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtTipoCuenta4.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta4.add(txtTipoCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 80, 20));
 
         txtNumeroCuenta4.setBackground(new java.awt.Color(255, 255, 255));
+        txtNumeroCuenta4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtNumeroCuenta4.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta4.add(txtNumeroCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
 
         txtmoneda4.setBackground(new java.awt.Color(255, 255, 255));
+        txtmoneda4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
+        txtmoneda4.setForeground(new java.awt.Color(102, 102, 102));
         btnInfoCuenta4.add(txtmoneda4, new org.netbeans.lib.awtextra.AbsoluteConstraints(205, 20, 100, 20));
 
         txtSaldoCuenta4.setBackground(new java.awt.Color(255, 255, 255));
+        txtSaldoCuenta4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         btnInfoCuenta4.add(txtSaldoCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
 
         imgFlechaAccesoCuenta4.setBackground(new java.awt.Color(255, 255, 255));
@@ -521,10 +560,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 700, 270, 60));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 353, 280, 10));
 
-        jLbackground.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.add(jLbackground, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
+        lblTipoCambioTitulo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        lblTipoCambioTitulo.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(lblTipoCambioTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 710, 150, 30));
+
+        lblTipoCambioUSD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoCambioUSD.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblTipoCambioUSD, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 710, 170, 30));
+
+        lblTipoCambioEUR.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoCambioEUR.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblTipoCambioEUR, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 750, 170, 30));
+
+        lblTipoCambioBs.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblTipoCambioBs.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblTipoCambioBs, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 750, 170, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 800));
 
@@ -664,7 +715,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLbackground;
     private javax.swing.JLabel jLbanco;
     private javax.swing.JLabel jLogMenu;
     private javax.swing.JLabel jLogosaldo;
@@ -689,6 +739,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlblretirtext7;
     private javax.swing.JLabel jloperacio;
     private javax.swing.JLabel lblBienvenido;
+    private javax.swing.JLabel lblTipoCambioBs;
+    private javax.swing.JLabel lblTipoCambioEUR;
+    private javax.swing.JLabel lblTipoCambioTitulo;
+    private javax.swing.JLabel lblTipoCambioUSD;
     private javax.swing.JLabel txtHoraFecha;
     private javax.swing.JLabel txtMisCuentas;
     private javax.swing.JLabel txtNombreCliente;

@@ -6,24 +6,33 @@ package JFrame;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Recibo extends javax.swing.JFrame {
 
     public Usuario usuario;
-    public Recibo(Usuario cliente,float valor, String numCuenta) {
+    public Recibo(Usuario cliente,float valor, String numCuenta, String tipoOperacion) {
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.usuario=cliente;
         LocalDate fechaActual=LocalDate.now();
         LocalTime horaActual = LocalTime.now();
-        lblDepositoExitoso.setText("¡Deposito exitoso!");
+        // Formatear la hora actual a hh:mm:ss
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String horaFormateada = horaActual.format(formatter);
+        // Cambia el mensaje dependiendo del tipo de operación
+        if (tipoOperacion.equalsIgnoreCase("deposito")) {
+            lblDepositoExitoso.setText("¡Deposito exitoso!");
+        } else if (tipoOperacion.equalsIgnoreCase("retiro")) {
+            lblDepositoExitoso.setText("¡Retiro exitoso!");
+        }
         lblBeneficiario.setText("Ordenante");
         lblNombre.setText(cliente.getNombreCompleto());
         lblValor.setText(String.valueOf(valor));
         lblCuenta.setText(numCuenta);
         txtFecha.setText(String.valueOf(fechaActual));
-        txtHora.setText(String.valueOf(horaActual));
+        txtHora.setText(horaFormateada);
     }
 
     /**
@@ -64,45 +73,51 @@ public class Recibo extends javax.swing.JFrame {
 
         lblDepositoExitoso.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         lblDepositoExitoso.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblDepositoExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 380, 29));
+        jPanel1.add(lblDepositoExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 260, 40));
 
         txtvalor.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtvalor.setForeground(new java.awt.Color(0, 51, 51));
         txtvalor.setText("Valor");
         jPanel1.add(txtvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 35));
 
-        lblValor.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        lblValor.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 190, 35));
+        lblValor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblValor.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 210, 35));
 
         txtdesde.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtdesde.setForeground(new java.awt.Color(0, 51, 51));
         txtdesde.setText("Cuenta");
         jPanel1.add(txtdesde, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, -1, 35));
 
-        lblCuenta.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        lblCuenta.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, 190, 35));
+        lblCuenta.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblCuenta.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 210, 35));
 
-        lblBeneficiario.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
+        lblBeneficiario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblBeneficiario.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 160, 35));
+        jPanel1.add(lblBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 100, 35));
 
-        lblNombre.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        lblNombre.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 200, 90));
+        lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 430, 260, 90));
 
         lblfecha.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         lblfecha.setForeground(new java.awt.Color(0, 51, 51));
         lblfecha.setText("FECHA");
         jPanel1.add(lblfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 90, 35));
-        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 90, 25));
+
+        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtFecha.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 225, 120, 30));
 
         lblhora.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         lblhora.setForeground(new java.awt.Color(0, 51, 51));
         lblhora.setText("HORA");
         jPanel1.add(lblhora, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 90, 35));
-        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 100, 25));
+
+        txtHora.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtHora.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(txtHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 225, 130, 30));
 
         btnMenuPrincipal.setBackground(new java.awt.Color(0, 51, 153));
         btnMenuPrincipal.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
@@ -169,7 +184,7 @@ public class Recibo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Recibo(null,-1,null).setVisible(true);
+                new Recibo(null,-1,null,null).setVisible(true);
             }
         });
     }

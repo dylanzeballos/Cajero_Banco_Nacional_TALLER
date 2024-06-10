@@ -62,18 +62,20 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLbanco.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
-        jLbanco.setForeground(new java.awt.Color(204, 204, 204));
+        jLbanco.setForeground(new java.awt.Color(0, 51, 51));
         jLbanco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/lOGOA.png"))); // NOI18N
         jLbanco.setText("BANCO NACIONAL");
-        jPanel2.add(jLbanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 430, 160));
+        jPanel2.add(jLbanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, 380, 160));
 
         usuariolbl.setForeground(new java.awt.Color(73, 80, 87));
         usuariolbl.setText("USUARIO");
         jPanel2.add(usuariolbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
+        usuario.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         usuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 usuarioMousePressed(evt);
@@ -96,8 +98,9 @@ public class Login extends javax.swing.JFrame {
 
         passwordtext.setForeground(new java.awt.Color(73, 80, 87));
         passwordtext.setText("CONTRASEÑA");
-        jPanel2.add(passwordtext, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, -1, -1));
+        jPanel2.add(passwordtext, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, -1, -1));
 
+        pintfiel.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         pintfiel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 pintfielMousePressed(evt);
@@ -109,6 +112,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(lblValidacionPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 230, 20));
 
         ingresarbutton.setBackground(new java.awt.Color(0, 51, 204));
+        ingresarbutton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         ingresarbutton.setForeground(new java.awt.Color(255, 255, 255));
         ingresarbutton.setText("Ingresar");
         ingresarbutton.setBorder(null);
@@ -120,6 +124,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(ingresarbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 400, 220, 30));
 
         salirbut.setBackground(new java.awt.Color(204, 0, 0));
+        salirbut.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         salirbut.setForeground(new java.awt.Color(255, 255, 255));
         salirbut.setText("Salir");
         salirbut.setBorder(null);
@@ -138,6 +143,7 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(salirbut, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 220, 30));
 
+        Registrobutton.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         Registrobutton.setForeground(new java.awt.Color(116, 120, 141));
         Registrobutton.setText("¿No tienes una cuenta? Regitrate aquí");
         Registrobutton.setBorder(null);
@@ -153,10 +159,10 @@ public class Login extends javax.swing.JFrame {
                 RegistrobuttonActionPerformed(evt);
             }
         });
-        jPanel2.add(Registrobutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 210, 20));
+        jPanel2.add(Registrobutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 480, 310, 20));
 
         lblfotousuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/perfilorig.png"))); // NOI18N
-        jPanel2.add(lblfotousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 70, 70));
+        jPanel2.add(lblfotousuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 70, 60));
 
         backgroundlogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Card_Content.png"))); // NOI18N
         backgroundlogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

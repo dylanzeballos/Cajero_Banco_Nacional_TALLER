@@ -92,6 +92,15 @@ public class Usuario {
         }
     }
     
+    public String getMonedaDeCuenta(String numCuenta) {
+    int indice = cuentas.indexOf(numCuenta);
+    if (indice != -1) {
+        return getMoneda(indice);
+    }
+    return null;
+}
+
+    
     public void addMoneda(String moneda) {
         this.monedas.add(moneda);
     }

@@ -111,10 +111,11 @@ public class Movimientos extends javax.swing.JFrame {
         jScrollPane2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
+        txtMovimientos.setEditable(false);
         txtMovimientos.setBackground(new java.awt.Color(255, 255, 255));
         txtMovimientos.setColumns(20);
         txtMovimientos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtMovimientos.setForeground(new java.awt.Color(153, 0, 0));
+        txtMovimientos.setForeground(new java.awt.Color(102, 102, 102));
         txtMovimientos.setRows(5);
         jScrollPane2.setViewportView(txtMovimientos);
 
@@ -127,11 +128,11 @@ public class Movimientos extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(315, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(109, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +146,7 @@ public class Movimientos extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 370, 860, 380));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 880, 380));
 
         jPanel4.setBackground(new java.awt.Color(0, 51, 102));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());

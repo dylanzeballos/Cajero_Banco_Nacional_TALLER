@@ -27,6 +27,25 @@ public class Recibo extends javax.swing.JFrame {
         } else if (tipoOperacion.equalsIgnoreCase("retiro")) {
             lblDepositoExitoso.setText("¡Retiro exitoso!");
         }
+        
+        // Obtener la moneda de la cuenta y mostrar el símbolo correspondiente
+        String moneda = cliente.getMonedaDeCuenta(numCuenta);
+        if (moneda != null) {
+            switch (moneda.toLowerCase()) {
+                case "bolivianos":
+                    txtSimboloDolar.setText("Bs");
+                    break;
+                case "dolares":
+                    txtSimboloDolar.setText("USD");
+                    break;
+                case "euros":
+                    txtSimboloDolar.setText("EUR");
+                    break;
+                default:
+                    txtSimboloDolar.setText("");
+                    break;
+            }
+        }
         lblBeneficiario.setText("Ordenante");
         lblNombre.setText(cliente.getNombreCompleto());
         lblValor.setText(String.valueOf(valor));
@@ -49,6 +68,7 @@ public class Recibo extends javax.swing.JFrame {
         lblDepositoExitoso = new javax.swing.JLabel();
         txtvalor = new javax.swing.JLabel();
         lblValor = new javax.swing.JLabel();
+        txtSimboloDolar = new javax.swing.JLabel();
         txtdesde = new javax.swing.JLabel();
         lblCuenta = new javax.swing.JLabel();
         lblBeneficiario = new javax.swing.JLabel();
@@ -77,12 +97,16 @@ public class Recibo extends javax.swing.JFrame {
 
         txtvalor.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtvalor.setForeground(new java.awt.Color(0, 51, 51));
-        txtvalor.setText("Valor");
+        txtvalor.setText("Monto");
         jPanel1.add(txtvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, 35));
 
         lblValor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblValor.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 210, 35));
+        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 110, 35));
+
+        txtSimboloDolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSimboloDolar.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(txtSimboloDolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 60, 35));
 
         txtdesde.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtdesde.setForeground(new java.awt.Color(0, 51, 51));
@@ -93,9 +117,9 @@ public class Recibo extends javax.swing.JFrame {
         lblCuenta.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(lblCuenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 210, 35));
 
-        lblBeneficiario.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblBeneficiario.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         lblBeneficiario.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 100, 35));
+        jPanel1.add(lblBeneficiario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 110, 35));
 
         lblNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(102, 102, 102));
@@ -203,6 +227,7 @@ public class Recibo extends javax.swing.JFrame {
     private javax.swing.JLabel lblhora;
     private javax.swing.JLabel txtFecha;
     private javax.swing.JLabel txtHora;
+    private javax.swing.JLabel txtSimboloDolar;
     private javax.swing.JLabel txtdesde;
     private javax.swing.JLabel txtvalor;
     // End of variables declaration//GEN-END:variables

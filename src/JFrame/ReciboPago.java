@@ -24,6 +24,24 @@ public class ReciboPago extends javax.swing.JFrame {
         lblCuenta.setText(numCuenta);
         lblTarjeta.setText(numTarjeta);
         txtFecha.setText(String.valueOf(fechaActual));
+        // Obtener la moneda de la cuenta y mostrar el símbolo correspondiente
+        String moneda = cliente.getMonedaDeCuenta(numCuenta);
+        if (moneda != null) {
+            switch (moneda.toLowerCase()) {
+                case "bolivianos":
+                    txtSimboloDolar.setText("Bs");
+                    break;
+                case "dolares":
+                    txtSimboloDolar.setText("USD");
+                    break;
+                case "euros":
+                    txtSimboloDolar.setText("EUR");
+                    break;
+                default:
+                    txtSimboloDolar.setText("");
+                    break;
+            }
+        }
     }
     
     public ReciboPago(Usuario cliente, float valor, String numCuenta ,String numCuentaBene, String nombre){
@@ -40,6 +58,24 @@ public class ReciboPago extends javax.swing.JFrame {
         lblCuenta.setText(numCuenta);
         lblTarjeta.setText(numCuentaBene);
         txtFecha.setText(String.valueOf(fechaActual));
+        // Obtener la moneda de la cuenta y mostrar el símbolo correspondiente
+        String moneda = cliente.getMonedaDeCuenta(numCuenta);
+        if (moneda != null) {
+            switch (moneda.toLowerCase()) {
+                case "bolivianos":
+                    txtSimboloDolar.setText("Bs");
+                    break;
+                case "dolares":
+                    txtSimboloDolar.setText("USD");
+                    break;
+                case "euros":
+                    txtSimboloDolar.setText("EUR");
+                    break;
+                default:
+                    txtSimboloDolar.setText("");
+                    break;
+            }
+        }
         
     }
     
@@ -68,6 +104,7 @@ public class ReciboPago extends javax.swing.JFrame {
         btnMenuPrincipal = new javax.swing.JButton();
         bntSalir = new javax.swing.JButton();
         txtFecha = new javax.swing.JLabel();
+        txtSimboloDolar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -79,20 +116,20 @@ public class ReciboPago extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         iconcheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-accept-67.png"))); // NOI18N
-        jPanel1.add(iconcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 52, -1, 80));
+        jPanel1.add(iconcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 50, -1, 80));
 
         lblPagoExitoso.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         lblPagoExitoso.setForeground(new java.awt.Color(0, 51, 51));
-        jPanel1.add(lblPagoExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 380, 50));
+        jPanel1.add(lblPagoExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 340, 50));
 
         txtvalor.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtvalor.setForeground(new java.awt.Color(0, 51, 51));
-        txtvalor.setText("Valor");
+        txtvalor.setText("Monto ");
         jPanel1.add(txtvalor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, 35));
 
         lblValor.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblValor.setForeground(new java.awt.Color(102, 102, 102));
-        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 210, 35));
+        jPanel1.add(lblValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 140, 35));
 
         txtdesde.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         txtdesde.setForeground(new java.awt.Color(0, 51, 51));
@@ -152,6 +189,10 @@ public class ReciboPago extends javax.swing.JFrame {
         txtFecha.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtFecha.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 180, 30));
+
+        txtSimboloDolar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtSimboloDolar.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(txtSimboloDolar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 60, 35));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 650));
 
@@ -217,6 +258,7 @@ public class ReciboPago extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipoTransaccion;
     private javax.swing.JLabel lblValor;
     private javax.swing.JLabel txtFecha;
+    private javax.swing.JLabel txtSimboloDolar;
     private javax.swing.JLabel txtdesde;
     private javax.swing.JLabel txtpara;
     private javax.swing.JLabel txtvalor;

@@ -427,7 +427,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtNumeroCuenta1.setBackground(new java.awt.Color(255, 255, 255));
         txtNumeroCuenta1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         txtNumeroCuenta1.setForeground(new java.awt.Color(102, 102, 102));
-        btnInfoCuenta1.add(txtNumeroCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 15, 110, 20));
+        btnInfoCuenta1.add(txtNumeroCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 15, 110, 20));
 
         txtmoneda1.setBackground(new java.awt.Color(255, 255, 255));
         txtmoneda1.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -436,7 +436,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
         txtSaldoCuenta1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnInfoCuenta1.add(txtSaldoCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 15, 70, 20));
+        btnInfoCuenta1.add(txtSaldoCuenta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 15, 85, 20));
 
         imgFlechaAccesoCuenta1.setBackground(new java.awt.Color(255, 255, 255));
         imgFlechaAccesoCuenta1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconoFlechaDerechaContinuar.png"))); // NOI18N
@@ -456,7 +456,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtNumeroCuenta2.setBackground(new java.awt.Color(255, 255, 255));
         txtNumeroCuenta2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         txtNumeroCuenta2.setForeground(new java.awt.Color(102, 102, 102));
-        btnInfoCuenta2.add(txtNumeroCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
+        btnInfoCuenta2.add(txtNumeroCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 110, 20));
 
         txtmoneda2.setBackground(new java.awt.Color(255, 255, 255));
         txtmoneda2.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -465,7 +465,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldoCuenta2.setBackground(new java.awt.Color(255, 255, 255));
         txtSaldoCuenta2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnInfoCuenta2.add(txtSaldoCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
+        btnInfoCuenta2.add(txtSaldoCuenta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 85, 20));
 
         imgFlechaAccesoCuenta2.setBackground(new java.awt.Color(255, 255, 255));
         imgFlechaAccesoCuenta2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconoFlechaDerechaContinuar.png"))); // NOI18N
@@ -492,7 +492,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtNumeroCuenta3.setBackground(new java.awt.Color(255, 255, 255));
         txtNumeroCuenta3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         txtNumeroCuenta3.setForeground(new java.awt.Color(102, 102, 102));
-        btnInfoCuenta3.add(txtNumeroCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
+        btnInfoCuenta3.add(txtNumeroCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 110, 20));
 
         txtmoneda3.setBackground(new java.awt.Color(255, 255, 255));
         txtmoneda3.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -501,7 +501,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldoCuenta3.setBackground(new java.awt.Color(255, 255, 255));
         txtSaldoCuenta3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnInfoCuenta3.add(txtSaldoCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
+        btnInfoCuenta3.add(txtSaldoCuenta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 85, 20));
 
         imgFlechaAccesoCuenta3.setBackground(new java.awt.Color(255, 255, 255));
         imgFlechaAccesoCuenta3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconoFlechaDerechaContinuar.png"))); // NOI18N
@@ -526,7 +526,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtNumeroCuenta4.setBackground(new java.awt.Color(255, 255, 255));
         txtNumeroCuenta4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         txtNumeroCuenta4.setForeground(new java.awt.Color(102, 102, 102));
-        btnInfoCuenta4.add(txtNumeroCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 20, 110, 20));
+        btnInfoCuenta4.add(txtNumeroCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 110, 20));
 
         txtmoneda4.setBackground(new java.awt.Color(255, 255, 255));
         txtmoneda4.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
@@ -535,7 +535,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         txtSaldoCuenta4.setBackground(new java.awt.Color(255, 255, 255));
         txtSaldoCuenta4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        btnInfoCuenta4.add(txtSaldoCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 70, 20));
+        btnInfoCuenta4.add(txtSaldoCuenta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 85, 20));
 
         imgFlechaAccesoCuenta4.setBackground(new java.awt.Color(255, 255, 255));
         imgFlechaAccesoCuenta4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/iconoFlechaDerechaContinuar.png"))); // NOI18N

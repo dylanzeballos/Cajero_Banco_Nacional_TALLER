@@ -1,0 +1,7 @@
+2024-06-10 09:26:46; Retiro de efectivo; Cuenta propia; 19.98 BOLIVIANOS
+2024-06-10 09:27:32; Depósito de efectivo; Cuenta propia; 1.01 BOLIVIANOS
+2024-06-10 09:27:47; Depósito de efectivo; Cuenta propia; 9.00 BOLIVIANOS
+2024-06-10 11:22:14; Depósito de efectivo; Cuenta propia; 10.00 BOLIVIANOS
+2024-06-10 11:22:50; Transferencia a; BORIS ZEBALLOS JIMENEZ; 20.01 BOLIVIANOS
+2024-06-10 12:45:23; Transferencia de; BORIS ZEBALLOS JIMENEZ; 30.01 BOLIVIANOS
+2024-06-10 12:45:50; Transferencia de; BORIS ZEBALLOS JIMENEZ; 212.10 BOLIVIANOS

@@ -364,7 +364,7 @@ public class Retiro extends javax.swing.JFrame {
             cliente.anexar(cliente.sobrescribirArchivo(archivo, cliente.getFila(), nuevaFila), "usuarios.txt");
 
             // Muestra el recibo
-            Recibo recibo = new Recibo(cliente, -valorRetiro, cliente.getCuenta(ajustaIndex));
+            Recibo recibo = new Recibo(cliente, valorRetiro, cliente.getCuenta(ajustaIndex));
             recibo.setVisible(true);
             this.dispose();
         } catch (NumberFormatException e) {

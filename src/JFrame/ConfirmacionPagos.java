@@ -170,7 +170,7 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagarActionPerformed
+    private void btnPagarActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.tipo == 1) {
             usuario.setSaldos((usuario.getSaldo(cuentaSeleccionada)
                     - valor), (cuentaSeleccionada));
@@ -214,13 +214,15 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
             String mensaje=(Arrays.toString(datosCuentaDestino)).replace(", ", ";").replaceAll("[\\[\\]]","");
 
             ArrayList<String> archivoModif;
-            archivoModif=usuario.sobrescribirArchivo(archivo, 
-                    usuario.getFila(), usuario.escribirFilaNueva());
+            archivoModif=usuario.sobrescribirArchivo(archivo, usuario.getFila(), usuario.escribirFilaNueva());
             
-            
-            archivoModif=usuario.sobrescribirArchivo(archivoModif, 
-                    filaReceptor, mensaje);
+            archivoModif=usuario.sobrescribirArchivo(archivoModif, filaReceptor, mensaje);
             usuario.anexar(archivoModif,"usuarios.txt");
+            
+            // Añadir movimiento al archivo del usuario receptor
+            String movimientoReceptor = String.format("%s; Transferencia de; %s; %.2f %s", usuario.getFormattedDateTime(), usuario.getNombreCompleto(), montoConvertido, monedaDestino);
+            usuario.guardarMovimientoEnArchivo(movimientoReceptor, tarjeta, monedaDestino);
+
             ReciboPago newframe2 = new ReciboPago(this.usuario, valor, cuenta, tarjeta, nombre);
             newframe2.setVisible(true);
             this.dispose();
@@ -266,9 +268,9 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
             newframe2.setVisible(true);
             this.dispose();
         }
-    }//GEN-LAST:event_btnPagarActionPerformed
+    }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         switch (tipo) {
             case 1:
                 new Retiro(usuario).setVisible(true);
@@ -287,7 +289,7 @@ public class ConfirmacionPagos extends javax.swing.JFrame {
                 break;
         }
         dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    }
 
     /**
      * @param args the command line arguments

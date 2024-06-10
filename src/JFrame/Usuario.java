@@ -34,7 +34,7 @@ public class Usuario {
         tiposDeCambio.put("EUROS-DOLARES", 1.18f);
     }
     
-    public Usuario(int contador,String nombreUsuario, String password, String nombreCompleto, 
+    public Usuario(int fila,String nombreUsuario, String password, String nombreCompleto, 
                    ArrayList<String> cuentas, ArrayList<String> tipoCuentas,
                    ArrayList<Float> saldos, ArrayList<String> movimientos, ArrayList<String> monedas) {
         this.fila = fila;
@@ -139,7 +139,7 @@ public class Usuario {
         }
     }
     
-    private void guardarMovimientoEnArchivo(String movimiento, String cuenta, String moneda) {
+    public void guardarMovimientoEnArchivo(String movimiento, String cuenta, String moneda) {
         String archivoMovimientos = cuenta + moneda + "movimientos.txt";
         try (PrintWriter out = new PrintWriter(new FileWriter(archivoMovimientos, true))) {
             out.println(movimiento);
@@ -148,7 +148,7 @@ public class Usuario {
         }
     }
     
-    private String getFormattedDateTime() {
+    public String getFormattedDateTime() {
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return now.format(formatter);

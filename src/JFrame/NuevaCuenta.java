@@ -257,13 +257,15 @@ public class NuevaCuenta extends javax.swing.JFrame {
             cliente.addTipo(String.valueOf(tipo));
             cliente.addSaldo(saldoInicial);
             cliente.addMoneda(String.valueOf(moneda));
+            
             // Actualiza la información del usuario en el archivo
             ArrayList<String> archivo = cliente.leerArchivo();
-            String datosUsuario = archivo.get(cliente.getFila());
+            int filaUsuario = cliente.getFila(); // Obtener la fila correcta del usuario actual
+            String datosUsuario = archivo.get(filaUsuario);
             datosUsuario = datosUsuario + ";" + numCuenta + ";" + tipo + ";" + saldoInicial + ";" + moneda;
-
-            archivo.set(cliente.getFila(), datosUsuario);
+            archivo.set(filaUsuario, datosUsuario);
             cliente.anexar(archivo, "usuarios.txt");
+
             // Muestra un mensaje de confirmación
             JOptionPane.showMessageDialog(null, "Se ha agregado una cuenta\n",
                     "Mensaje", JOptionPane.INFORMATION_MESSAGE);
